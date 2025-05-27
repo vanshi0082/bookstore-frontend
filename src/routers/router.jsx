@@ -68,11 +68,11 @@ const router = createBrowserRouter([
           element: <PrivateRoute><WishlistPage/></PrivateRoute>
         },
         {
-          path: "/sucess",
+          path: "/success",
           element: <PrivateRoute><SuccessPage/></PrivateRoute>
         },
         {
-          path: "/cancle",
+          path: "/cancel",
           element: <PrivateRoute><CancelPage/></PrivateRoute>
         },
         
