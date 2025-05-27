@@ -12,6 +12,7 @@ export const saveWishlistToFirestore = async (uid, wishlistItems) => {
     }
 };
 
+
 export const saveCartToFirestore = async (uid, cartItems) => {
   try {
       console.log("Saving to Firestore, Cart: ", cartItems);  // Log the wishlist items
