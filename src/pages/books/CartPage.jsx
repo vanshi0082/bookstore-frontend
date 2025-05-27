@@ -34,7 +34,7 @@ const CartPage = () => {
     
             const userId = currentUser.uid;
     
-            const response = await axios.post('http://localhost:5000/api/stripe/create-checkout-session', {
+            const response = await axios.post('https://bookstore-backend-0500.onrender.com/api/stripe/create-checkout-session', {
                 cartItems,
                 userId,
             });
