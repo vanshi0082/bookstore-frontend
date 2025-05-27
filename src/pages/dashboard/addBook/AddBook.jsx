@@ -21,7 +21,7 @@ const AddBook = () => {
         //formData.append('file', imageFile);
         formData.append('image', imageFile);
 
-        const res = await fetch("http://localhost:5000/api/upload", {
+        const res = await fetch("https://bookstore-backend-0500.onrender.com/api/upload", {
           method: 'POST',
           body: formData
         });

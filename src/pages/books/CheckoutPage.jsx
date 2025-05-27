@@ -23,43 +23,41 @@ const CheckoutPage = () => {
     const navigate =  useNavigate()
 
     const [isChecked, setIsChecked] = useState(false)
-
+    
     const onSubmit = async (data) => {
-    const newOrder = {
-        name: data.name,
-        email: currentUser?.email,
-        address: {
-            city: data.city,
-            country: data.country,
-            state: data.state,
-            zipcode: data.zipcode
-        },
-        phone: data.phone,
-        productIds: cartItems.map(item => item?._id),
-        totalPrice: totalPrice,
+     
+        const newOrder = {
+            name: data.name,
+            email: currentUser?.email,
+            address: {
+                city: data.city,
+                country: data.country,
+                state: data.state,
+                zipcode: data.zipcode
+        
+            },
+            phone: data.phone,
+            productIds: cartItems.map(item => item?._id),
+            totalPrice: totalPrice,
+        }
+        
+        try {
+            await createOrder(newOrder).unwrap();
+            Swal.fire({
+                title: "Confirmed Order",
+                text: "Your order placed successfully!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, It's Okay!"
+              });
+              navigate("/orders")
+        } catch (error) {
+            console.error("Error place an order", error);
+            alert("Failed to place an order")
+        }
     }
-
-    try {
-        await createOrder(newOrder).unwrap();
-
-        Swal.fire({
-            title: "Confirmed Order",
-            text: "Your order placed successfully!",
-            icon: "success",  // changed from "warning" to "success" for clarity
-            confirmButtonColor: "#3085d6",
-            confirmButtonText: "OK"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                navigate("/orders");
-            }
-        });
-
-    } catch (error) {
-        console.error("Error place an order", error);
-        alert("Failed to place an order");
-    }
-}
-
 
     if(isLoading) return <div>Loading....</div>
     return (
